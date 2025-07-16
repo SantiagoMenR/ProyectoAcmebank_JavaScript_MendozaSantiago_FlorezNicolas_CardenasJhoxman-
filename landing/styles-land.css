@@ -1,0 +1,480 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #4563e9;
+    align-items: center;
+    color: white;
+    filter: drop-shadow( 0 4px 8px rgba(0,0,0,0.5));
+}
+
+.title{
+    margin-left: 1rem;
+    user-select: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.botones{
+    display: flex;
+    gap: 0.8rem;
+    margin-right: 1rem;
+}
+
+.botones a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.botones a:hover{
+    color: rgb(17, 17, 138);
+}
+
+.banner{
+    background: url("../assets/Fondo_Banco.jpg") no-repeat no-repeat center;
+    width: 100%;
+    overflow: hidden;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 2px 6px black;
+}
+
+.banner a{
+    background: #4563e9;
+    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    padding: 1rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: white;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.banner a:hover{
+    background: #233ba6;
+}
+
+.servicios{
+    margin: 3rem 0;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.servicios h1{
+    font-size: 3rem;
+    color: #4563e9;
+}
+
+.container{
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4563e9;
+    max-width: 20rem;
+    text-align: center;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(69, 99, 233, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(69, 99, 233, 0.3);
+}
+
+.card h2{
+    color: #4563e9;
+    font-size: 1.5rem;
+}
+
+/* Sección Historia */
+.historia{
+    margin: 4rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+}
+
+.historia h1{
+    text-align: center;
+    font-size: 3rem;
+    color: #4563e9;
+    margin-bottom: 2rem;
+}
+
+.historia-content{
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.historia-texto{
+    flex: 2;
+}
+
+.historia-texto h2{
+    color: #4563e9;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.historia-texto p{
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.logros{
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.logro{
+    text-align: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(69, 99, 233, 0.2);
+}
+
+.logro h3{
+    color: #4563e9;
+    font-size: 1.5rem;
+}
+
+.historia-imagen{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.imagen-placeholder{
+    width: 300px;
+    height: 200px;
+    background: #4563e9;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+    box-shadow: 0 8px 16px rgba(69, 99, 233, 0.3);
+}
+
+.imagen-placeholder p{
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Sección Equipo */
+.equipo{
+    margin: 4rem 0;
+    padding: 2rem;
+}
+
+.equipo h1{
+    text-align: center;
+    font-size: 3rem;
+    color: #4563e9;
+    margin-bottom: 3rem;
+}
+
+.equipo-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.miembro{
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(69, 99, 233, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.miembro:hover{
+    transform: translateY(-5px);
+}
+
+.avatar{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.miembro h3{
+    color: #4563e9;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.cargo{
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.descripcion{
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Sección Valores */
+.valores{
+    margin: 4rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+}
+
+.valores h1{
+    text-align: center;
+    font-size: 3rem;
+    color: #4563e9;
+    margin-bottom: 3rem;
+}
+
+.valores-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.valor{
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(69, 99, 233, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.valor:hover{
+    transform: translateY(-5px);
+}
+
+.valor-icono{
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.valor h3{
+    color: #4563e9;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.valor p{
+    color: #333;
+    line-height: 1.5;
+}
+
+/* Sección Contacto */
+.contacto{
+    margin: 4rem 0;
+    padding: 2rem;
+}
+
+.contacto h1{
+    text-align: center;
+    font-size: 3rem;
+    color: #4563e9;
+    margin-bottom: 3rem;
+}
+
+.contacto-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contacto-info, .contacto-form{
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(69, 99, 233, 0.2);
+}
+
+.contacto-info h3, .contacto-form h3{
+    color: #4563e9;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.info-item span{
+    font-weight: 600;
+    color: #4563e9;
+    min-width: 120px;
+}
+
+.info-item p{
+    color: #333;
+    margin-left: 1rem;
+}
+
+.contacto-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contacto-form input,
+.contacto-form textarea{
+    padding: 0.8rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus{
+    outline: none;
+    border-color: #4563e9;
+}
+
+.contacto-form button{
+    background: #4563e9;
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contacto-form button:hover{
+    background: #233ba6;
+}
+
+/* Footer */
+footer{
+    background: #4563e9;
+    color: white;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h4{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section ul{
+    list-style: none;
+}
+
+.footer-section ul li{
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a{
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover{
+    color: white;
+}
+
+.redes-sociales{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-bottom{
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .historia-content{
+        flex-direction: column;
+    }
+    
+    .contacto-container{
+        grid-template-columns: 1fr;
+    }
+    
+    .logros{
+        flex-direction: column;
+    }
+    
+    .container{
+        flex-direction: column;
+    }
+    
+    .banner{
+        font-size: 2rem;
+        height: 25rem;
+    }
+    
+    .servicios h1, .historia h1, .equipo h1, .valores h1, .contacto h1{
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Acme - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h1>Banco Acme</h1>
+            </div>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </div>
+        </header>
+        
+        <div class="dashboard-content">
+            <nav class="sidebar">
+                <ul class="menu">
+                    <li><a href="#" onclick="showSection('account-summary')" class="menu-item active">
+                        <i class="fas fa-chart-line"></i> Resumen de Cuenta
+                    </a></li>
+                    <li><a href="#" onclick="showSection('transactions')" class="menu-item">
+                        <i class="fas fa-list"></i> Resumen de Transacciones
+                    </a></li>
+                    <li><a href="#" onclick="showSection('deposit')" class="menu-item">
+                        <i class="fas fa-plus-circle"></i> Consignación Electrónica
+                    </a></li>
+                    <li><a href="#" onclick="showSection('withdrawal')" class="menu-item">
+                        <i class="fas fa-minus-circle"></i> Retiro de Dinero
+                    </a></li>
+                    <li><a href="#" onclick="showSection('payments')" class="menu-item">
+                        <i class="fas fa-file-invoice"></i> Pago de Servicios
+                    </a></li>
+                    <li><a href="#" onclick="showSection('statement')" class="menu-item">
+                        <i class="fas fa-file-alt"></i> Extracto Bancario
+                    </a></li>
+                    <li><a href="#" onclick="showSection('certificate')" class="menu-item">
+                        <i class="fas fa-certificate"></i> Certificado Bancario
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <main class="main-content">
+                <!-- Account Summary Section -->
+                <section id="account-summary" class="content-section active">
+                    <h2>Resumen de Cuenta</h2>
+                    <div class="account-card">
+                        <div class="card-header">
+                            <h3>Información de la Cuenta</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="account-info">
+                                <div class="info-item">
+                                    <label>Número de Cuenta:</label>
+                                    <span id="accountNumber"></span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Saldo Actual:</label>
+                                    <span id="accountBalance" class="balance"></span>
+                                </div>
+                                <div class="info-item">
+                                    <label>Fecha de Creación:</label>
+                                    <span id="creationDate"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Transactions Section -->
+                <section id="transactions" class="content-section">
+                    <h2>Resumen de Transacciones</h2>
+                    <div class="transactions-header">
+                        <p>Últimas 10 transacciones</p>
+                        <button class="btn btn-secondary" onclick="printTransactions()">
+                            <i class="fas fa-print"></i> Imprimir
+                        </button>
+                    </div>
+                    <div class="transactions-table">
+                        <table id="transactionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Referencia</th>
+                                    <th>Tipo</th>
+                                    <th>Concepto</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Deposit Section -->
+                <section id="deposit" class="content-section">
+                    <h2>Consignación Electrónica</h2>
+                    <div class="transaction-form">
+                        <div class="user-info-display">
+                            <p><strong>Cuenta:</strong> <span id="depositAccount"></span></p>
+                            <p><strong>Titular:</strong> <span id="depositName"></span></p>
+                        </div>
+                        <form id="depositForm">
+                            <div class="form-group">
+                                <label for="depositAmount">Cantidad a Consignar</label>
+                                <input type="number" id="depositAmount" name="depositAmount" min="1" step="0.01" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Realizar Consignación</button>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Withdrawal Section -->
+                <section id="withdrawal" class="content-section">
+                    <h2>Retiro de Dinero</h2>
+                    <div class="transaction-form">
+                        <div class="user-info-display">
+                            <p><strong>Cuenta:</strong> <span id="withdrawalAccount"></span></p>
+                            <p><strong>Titular:</strong> <span id="withdrawalName"></span></p>
+                        </div>
+                        <form id="withdrawalForm">
+                            <div class="form-group">
+                                <label for="withdrawalAmount">Cantidad a Retirar</label>
+                                <input type="number" id="withdrawalAmount" name="withdrawalAmount" min="1" step="0.01" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Realizar Retiro</button>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Payments Section -->
+                <section id="payments" class="content-section">
+                    <h2>Pago de Servicios Públicos</h2>
+                    <div class="transaction-form">
+                        <div class="user-info-display">
+                            <p><strong>Cuenta:</strong> <span id="paymentAccount"></span></p>
+                            <p><strong>Titular:</strong> <span id="paymentName"></span></p>
+                        </div>
+                        <form id="paymentForm">
+                            <div class="form-group">
+                                <label for="serviceType">Servicio Público</label>
+                                <select id="serviceType" name="serviceType" required>
+                                    <option value="">Selecciona un servicio</option>
+                                    <option value="Energía">Energía</option>
+                                    <option value="Agua">Agua</option>
+                                    <option value="Gas Natural">Gas Natural</option>
+                                    <option value="Internet">Internet</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="serviceReference">Referencia del Servicio</label>
+                                <input type="text" id="serviceReference" name="serviceReference" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="paymentAmount">Valor a Pagar</label>
+                                <input type="number" id="paymentAmount" name="paymentAmount" min="1" step="0.01" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Realizar Pago</button>
+                        </form>
+                    </div>
+                </section>
+                
+                <!-- Statement Section -->
+                <section id="statement" class="content-section">
+                    <h2>Extracto Bancario</h2>
+                    <div class="statement-form">
+                        <div class="user-info-display">
+                            <p><strong>Cuenta:</strong> <span id="statementAccount"></span></p>
+                            <p><strong>Titular:</strong> <span id="statementName"></span></p>
+                        </div>
+                        <form id="statementForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="statementYear">Año</label>
+                                    <select id="statementYear" name="statementYear" required>
+                                        <option value="">Selecciona año</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="statementMonth">Mes</label>
+                                    <select id="statementMonth" name="statementMonth" required>
+                                        <option value="">Selecciona mes</option>
+                                        <option value="1">Enero</option>
+                                        <option value="2">Febrero</option>
+                                        <option value="3">Marzo</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Mayo</option>
+                                        <option value="6">Junio</option>
+                                        <option value="7">Julio</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Septiembre</option>
+                                        <option value="10">Octubre</option>
+                                        <option value="11">Noviembre</option>
+                                        <option value="12">Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Generar Extracto</button>
+                        </form>
+                        <div id="statementResult" class="statement-result hidden">
+                            <div class="statement-header">
+                                <button class="btn btn-secondary" onclick="printStatement()">
+                                    <i class="fas fa-print"></i> Imprimir
+                                </button>
+                            </div>
+                            <table id="statementTable">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Referencia</th>
+                                        <th>Tipo</th>
+                                        <th>Concepto</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="statementBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Certificate Section -->
+                <section id="certificate" class="content-section">
+                    <h2>Certificado Bancario</h2>
+                    <div class="certificate-container">
+                        <div class="certificate-header">
+                            <button class="btn btn-secondary" onclick="printCertificate()">
+                                <i class="fas fa-print"></i> Imprimir
+                            </button>
+                        </div>
+                        <div id="certificateContent" class="certificate-content">
+                            <div class="certificate-header-content">
+                                <div class="certificate-logo">
+                                    <i class="fas fa-university"></i>
+                                    <h1>BANCO ACME</h1>
+                                </div>
+                                <h2>CERTIFICADO BANCARIO</h2>
+                            </div>
+                            <div class="certificate-body">
+                                <p class="certificate-text">
+                                    El suscrito Gerente General del BANCO ACME, certifica que:
+                                </p>
+                                <p class="certificate-text">
+                                    <strong id="certificateUserName"></strong>, identificado(a) con <strong id="certificateIdType"></strong> número <strong id="certificateIdNumber"></strong>, es titular de la cuenta de ahorros número <strong id="certificateAccountNumber"></strong> en nuestra institución financiera.
+                                </p>
+                                <p class="certificate-text">
+                                    La cuenta se encuentra activa desde el <strong id="certificateCreationDate"></strong> y está al día en todas sus obligaciones.
+                                </p>
+                                <p class="certificate-text">
+                                    Este certificado se expide a solicitud del interesado para los fines que considere convenientes.
+                                </p>
+                                <div class="certificate-footer">
+                                    <p>Dado en la ciudad de Bogotá, a los <span id="certificateCurrentDate"></span></p>
+                                    <div class="signature-section">
+                                        <div class="signature-line"></div>
+                                        <p>Gerente General<br>BANCO ACME</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div id="errorMessage" class="error-message hidden"></div>
+                <div id="successMessage" class="success-message hidden"></div>
+            </main>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

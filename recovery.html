@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Acme - Recuperar Contraseña</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="recovery-container">
+            <div class="recovery-header">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>Banco Acme</h1>
+                </div>
+                <p class="subtitle">Recuperar contraseña</p>
+            </div>
+            
+            <form id="recoveryForm" class="recovery-form">
+                <div class="form-group">
+                    <label for="recIdType">Tipo de Identificación</label>
+                    <select id="recIdType" name="recIdType" required>
+                        <option value="">Selecciona un tipo</option>
+                        <option value="CC">Cédula de Ciudadanía</option>
+                        <option value="TI">Tarjeta de Identidad</option>
+                        <option value="CE">Cédula de Extranjería</option>
+                        <option value="PP">Pasaporte</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recIdNumber">Número de Identificación</label>
+                    <input type="text" id="recIdNumber" name="recIdNumber" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recEmail">Correo Electrónico</label>
+                    <input type="email" id="recEmail" name="recEmail" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Verificar Datos</button>
+                </div>
+            </form>
+            
+            <form id="newPasswordForm" class="new-password-form hidden">
+                <div class="form-group">
+                    <label for="newPassword">Nueva Contraseña</label>
+                    <input type="password" id="newPassword" name="newPassword" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar Contraseña</button>
+                </div>
+            </form>
+            
+            <div id="errorMessage" class="error-message hidden"></div>
+            <div id="successMessage" class="success-message hidden"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
