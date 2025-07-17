@@ -447,3 +447,27 @@ function qr() {
     printWindow.document.close();
     printWindow.print();
 }
+
+// Menú hamburguesa responsive
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+
+function openSidebar() {
+    sidebar.classList.add('open');
+    sidebarBackdrop.style.display = 'block';
+}
+
+function closeSidebar() {
+    sidebar.classList.remove('open');
+    sidebarBackdrop.style.display = 'none';
+}
+
+if (sidebarToggle && sidebar && sidebarBackdrop) {
+    sidebarToggle.addEventListener('click', openSidebar);
+    sidebarBackdrop.addEventListener('click', closeSidebar);
+    // Cerrar menú al hacer clic en un enlace del menú
+    sidebar.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', closeSidebar);
+    });
+}

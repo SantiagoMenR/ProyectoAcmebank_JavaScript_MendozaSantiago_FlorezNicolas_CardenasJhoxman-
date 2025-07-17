@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banco Acme - Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-dashboard.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../styles-index.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
@@ -17,6 +19,9 @@
                 <i class="fas fa-university"></i>
                 <h1>Banco Acme</h1>
             </div>
+            <button id="sidebarToggle" class="hamburger" aria-label="Abrir menú" style="display:none">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="user-info">
                 <span id="userName"></span>
                 <button class="btn btn-secondary" onclick="logout()">
@@ -26,7 +31,7 @@
         </header>
         
         <div class="dashboard-content">
-            <nav class="sidebar">
+            <nav class="sidebar" id="sidebar">
                 <ul class="menu">
                     <li><a href="#" onclick="showSection('account-summary')" class="menu-item active">
                         <i class="fas fa-chart-line"></i> Resumen de Cuenta
@@ -58,6 +63,7 @@
                     </a></li>
                 </ul>
             </nav>
+            <div class="sidebar-backdrop" id="sidebarBackdrop" style="display:none"></div>
             
             <main class="main-content">
                 <!-- Account Summary Section -->
@@ -430,7 +436,7 @@
         <span class="chat-badge" id="chatBadge">1</span>
     </div>
     
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
     <script src="dashboard.js"></script>
     <script src="chatbot.js"></script>
 </body>

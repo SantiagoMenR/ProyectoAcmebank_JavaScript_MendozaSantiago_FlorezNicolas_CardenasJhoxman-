@@ -238,7 +238,7 @@ if (document.getElementById('loginForm')) {
         const user = bankingSystem.authenticateUser(idType, idNumber, password);
         
         if (user) {
-            window.location.href = 'dashboard.html';
+            window.location.href = './dashboard/dashboard.html';
         } else {
             showError('No se pudo validar su identidad. Verifique sus credenciales.');
         }
@@ -282,7 +282,7 @@ if (document.getElementById('registerForm')) {
                     <h3>¡Registro exitoso!</h3>
                     <p><strong>Número de cuenta asignado:</strong> ${newUser.accountNumber}</p>
                     <p><strong>Fecha de creación:</strong> ${formatDate(newUser.creationDate)}</p>
-                    <p><a href="index.html">Ir al inicio de sesión</a></p>
+                    <p><a href="../index.html">Ir al inicio de sesión</a></p>
                 </div>
             `;
             
@@ -351,7 +351,7 @@ if (document.getElementById('recoveryForm')) {
             showSuccess('Contraseña actualizada exitosamente. Será redirigido al inicio de sesión.');
             
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = '../index.html';
             }, 2000);
         } else {
             showError('Error al actualizar la contraseña');
@@ -370,5 +370,5 @@ if (window.location.pathname.includes('dashboard.html')) {
 // Logout function
 function logout() {
     bankingSystem.logoutUser();
-    window.location.href = 'index.html';
+    window.location.href = '../index.html';
 }
