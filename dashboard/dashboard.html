@@ -15,18 +15,19 @@
 <body>
     <div class="dashboard-container">
         <header class="dashboard-header">
-            <div class="logo">
-                <i class="fas fa-university"></i>
-                <h1>Banco Acme</h1>
-            </div>
-            <button id="sidebarToggle" class="hamburger" aria-label="Abrir menú" style="display:none">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="user-info">
-                <span id="userName"></span>
-                <button class="btn btn-secondary" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            <div class="dashboard-header-row">
+                <div class="logo">
+                    <i class="fas fa-university"></i>
+                    <h1>Banco Acme</h1>
+                </div>
+                <button id="sidebarToggle" class="hamburger" aria-label="Abrir menú" style="display:none">
+                    <i class="fas fa-bars"></i>
                 </button>
+            </div>
+            <div class="dashboard-header-row">
+                <div class="user-info">
+                    <span id="userName"></span>
+                </div>
             </div>
         </header>
         
@@ -38,7 +39,6 @@
                     </a></li>
                     <li><a href="#" onclick="showSection('transactions')" class="menu-item">
                         <i class="fas fa-list"></i> Resumen de Transacciones
-                    </a></li>
                     </a></li>
                     <li><a href="#" onclick="showSection('qr-code')" class="menu-item">
                         <i class="fas fa-qrcode"></i> Mi Código QR
@@ -61,6 +61,12 @@
                     <li><a href="#" onclick="showSection('certificate')" class="menu-item">
                         <i class="fas fa-certificate"></i> Certificado Bancario
                     </a></li>
+                    <!-- Botón cerrar sesión al final del menú -->
+                    <li>
+                        <button class="menu-item logout-item" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        </button>
+                    </li>
                 </ul>
             </nav>
             <div class="sidebar-backdrop" id="sidebarBackdrop" style="display:none"></div>

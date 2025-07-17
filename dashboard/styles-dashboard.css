@@ -29,8 +29,23 @@ body{
     margin-bottom: 0;
 }
 
-.logo h1, .logo i{
-    color: white;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    vertical-align: middle;
+    font-size: 1.5em;
+    margin-right: 0.3em;
+}
+
+.logo h1 {
+    display: inline;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 1.2em;
 }
 
 .user-info {
@@ -366,9 +381,30 @@ body{
     }
     .dashboard-header {
         flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-        background: #131520;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 10px 6px;
+    }
+    .dashboard-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .logo {
+        justify-content: flex-start;
+        flex: 1;
+    }
+    .user-info {
+        justify-content: flex-end;
+        flex: 1;
+        gap: 6px;
+    }
+    .dashboard-header .logo h1 {
+        font-size: 1.1em;
+    }
+    .dashboard-header .logo i {
+        font-size: 1.3em;
     }
     .user-info {
         flex-direction: column;
@@ -417,6 +453,11 @@ body{
     z-index: 1000;
     overflow: hidden;
     animation: slideUp 0.3s ease;
+    max-width: 100vw;
+    max-height: 100vh;
+    inset: auto 0 0 auto;
+    /* Asegura que nunca se salga de la pantalla */
+    box-sizing: border-box;
 }
 
 .chat-modal.active {
@@ -437,6 +478,9 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-width: 0;
+    flex-shrink: 0;
+    overflow-x: auto;
 }
 
 .chat-title {
@@ -453,6 +497,8 @@ body{
 .chat-controls {
     display: flex;
     gap: 0.5rem;
+    flex-shrink: 0;
+    min-width: 0;
 }
 
 .chat-minimize,
@@ -464,6 +510,12 @@ body{
     padding: 0.25rem;
     border-radius: 4px;
     transition: background 0.3s ease;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chat-minimize:hover,
@@ -761,13 +813,36 @@ body{
 /* Responsive design */
 @media (max-width: 768px) {
     .dashboard-header {
-        flex-direction: row;
-        gap: 10px;
-        padding: 12px 10px;
-        background: #131520;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 10px 6px;
+    }
+    .dashboard-header-row {
+        display: flex;
         align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .logo {
         justify-content: flex-start;
-        position: relative;
+        flex: 1;
+    }
+    .user-info {
+        justify-content: flex-end;
+        flex: 1;
+        gap: 6px;
+    }
+    .dashboard-header .logo h1 {
+        font-size: 1.1em;
+    }
+    .dashboard-header .logo i {
+        font-size: 1.3em;
+    }
+    .user-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
     }
     .logo h1 {
         display: none;
@@ -811,6 +886,10 @@ body{
         width: calc(100vw - 2rem);
         right: 1rem;
         left: 1rem;
+        max-width: calc(100vw - 2rem);
+        max-height: calc(100vh - 2rem);
+        top: 1rem;
+        bottom: 1rem;
     }
     
     .chat-toggle {
@@ -917,4 +996,49 @@ body{
 
 .img{
     width: 200px;
+}
+
+@media (max-width: 480px) {
+    .chat-modal,
+    .chat-toggle {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-item {
+        white-space: normal;
+        word-break: break-word;
+        min-width: 120px;
+        max-width: 100vw;
+        padding: 12px 10px;
+        font-size: 0.98rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-header .btn.btn-secondary,
+    .dashboard-header .logout-item {
+        display: none !important;
+    }
+}
+
+.logout-item {
+    color: #fff !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 12px 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.logout-item i {
+    margin-right: 8px;
+}
+.logout-item:hover {
+    background: #667eea !important;
 }
