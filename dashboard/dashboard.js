@@ -435,7 +435,7 @@ function qr() {
         <html>
         <body>
             <div style="display:flex; flex-direction:column; justify-content:center;">
-                <img style="display:flex; justify-content:center;" class="img" src="./assets/Captura desde 2025-07-16 16-11-39.png" alt="">
+                <img style="display:flex; justify-content:center;" class="img" src="../assets/Captura desde 2025-07-16 16-11-39.png" alt="">
                 <h1 style="text-align:center;">QR - Banco ACME</h1>
             <div/>
             
