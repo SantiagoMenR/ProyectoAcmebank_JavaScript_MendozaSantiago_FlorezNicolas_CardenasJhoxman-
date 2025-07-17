@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
     <div class="dashboard-container">
@@ -31,6 +33,13 @@
                     </a></li>
                     <li><a href="#" onclick="showSection('transactions')" class="menu-item">
                         <i class="fas fa-list"></i> Resumen de Transacciones
+                    </a></li>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('qr-code')" class="menu-item">
+                        <i class="fas fa-qrcode"></i> Mi Código QR
+                    </a></li>
+                    <li><a href="#" onclick="showSection('qr-scanner')" class="menu-item">
+                        <i class="fas fa-camera"></i> Escanear QR
                     </a></li>
                     <li><a href="#" onclick="showSection('deposit')" class="menu-item">
                         <i class="fas fa-plus-circle"></i> Consignación Electrónica
@@ -100,6 +109,83 @@
                             <tbody id="transactionsBody">
                             </tbody>
                         </table>
+                    </div>
+                </section>
+
+                 <!-- QR Code Section -->
+                <section id="qr-code" class="content-section">
+                    <h2>Mi Código QR</h2>
+                    <div class="qr-card">
+                        <div class="card-header">
+                            <h3>Código QR para Recibir Pagos</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="qr-generator">
+                                <div class="qr-display">
+                                    <img class="img" src="./assets/Captura desde 2025-07-16 16-11-39.png" alt="">
+                                </div>
+                                <div class="qr-info">
+                                    <p><strong>Cuenta:</strong> <span id="qrAccount"></span></p>
+                                    <p><strong>Titular:</strong> <span id="qrName"></span></p>
+                                    <p class="qr-instruction">Comparte este código QR para recibir pagos directamente en tu cuenta</p>
+                                </div>
+                                <div class="qr-actions">
+                                    <button class="btn btn-primary" onclick="generateQR()">
+                                        <i class="fas fa-refresh"></i> Generar Nuevo QR
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="qr()">
+                                        <i class="fas fa-print"></i> Imprimir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- QR Scanner Section -->
+                <section id="qr-scanner" class="content-section">
+                    <h2>Escanear Código QR</h2>
+                    <div class="scanner-card">
+                        <div class="card-header">
+                            <h3>Realizar Pago con Código QR</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="scanner-container">
+                                <div id="qr-reader" class="qr-reader"></div>
+                                <div class="scanner-controls">
+                                    <button id="start-scan" class="btn btn-primary">
+                                        <i class="fas fa-camera"></i> Iniciar Escaneo
+                                    </button>
+                                    <button id="stop-scan" class="btn btn-secondary" style="display: none;">
+                                        <i class="fas fa-stop"></i> Detener Escaneo
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="payment-form" class="payment-form hidden">
+                                <h4>Información del Destinatario</h4>
+                                <div class="recipient-info">
+                                    <p><strong>Cuenta:</strong> <span id="recipientAccount"></span></p>
+                                    <p><strong>Titular:</strong> <span id="recipientName"></span></p>
+                                </div>
+                                <form id="qrPaymentForm">
+                                    <div class="form-group">
+                                        <label for="qrPaymentAmount">Cantidad a Pagar</label>
+                                        <input type="number" id="qrPaymentAmount" name="qrPaymentAmount" min="1" step="0.01" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="qrPaymentConcept">Concepto del Pago</label>
+                                        <input type="text" id="qrPaymentConcept" name="qrPaymentConcept" placeholder="Ej: Pago de producto, servicio, etc." required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-credit-card"></i> Realizar Pago
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" onclick="cancelPayment()">
+                                        <i class="fas fa-times"></i> Cancelar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 
@@ -278,8 +364,74 @@
             </main>
         </div>
     </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="chat-modal">
+        <div class="chat-modal-content">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-robot"></i>
+                    <h3>Asistente Virtual</h3>
+                </div>
+                <div class="chat-controls">
+                    <a href="dashboard.html"><button class="chat-minimize" onclick="minimizeChat()">
+                        <i class="fas fa-minus"></i>
+                    </button></a>
+                    <a href="dashboard.html"><button class="chat-close" onclick="closeChat()">
+                        <i class="fas fa-times"></i>
+                    </button></a>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>¡Hola! Soy tu asistente virtual de Banco Acme. ¿En qué puedo ayudarte hoy?</p>
+                        <div class="message-time">
+                            <span id="initialTime"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <div class="quick-buttons">
+                    <button class="quick-btn" onclick="sendQuickMessage('¿Cuál es mi saldo actual?')">
+                        <i class="fas fa-wallet"></i> Saldo
+                    </button>
+                    <button class="quick-btn" onclick="sendQuickMessage('¿Cómo hacer una transferencia?')">
+                        <i class="fas fa-exchange-alt"></i> Transferencias
+                    </button>
+                    <button class="quick-btn" onclick="sendQuickMessage('¿Cuáles son los horarios de atención?')">
+                        <i class="fas fa-clock"></i> Horarios
+                    </button>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <form id="chatForm" class="chat-form">
+                    <div class="input-group">
+                        <input type="text" id="messageInput" placeholder="Escribe tu mensaje aquí..." autocomplete="off">
+                        <button type="submit" class="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Chat Button -->
+    <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+        <span class="chat-badge" id="chatBadge">1</span>
+    </div>
     
     <script src="script.js"></script>
     <script src="dashboard.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>
